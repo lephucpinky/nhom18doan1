@@ -8,12 +8,13 @@ import { addToCart, removefromcart } from "../redux/Actions/CardAction";
 const CartScreen = ({ match, location, history }) => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
-  const productId = match.params.id;
+  const productId = match.params.id;//sử dụng Bộ định tuyến React để định tuyến trong ứng dụng React của mình.
+  //trích xuất giá trị số lượng (có lẽ) từ chuỗi truy vấn của URL
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
+  //thực hiện phép tính cốt lõi về tổng giá cho tất cả các mặt hàng trong giỏ hàng.
   const total = cartItems.reduce((a, i) => a + i.qty * i.price, 0).toFixed(2);
 
   useEffect(() => {
